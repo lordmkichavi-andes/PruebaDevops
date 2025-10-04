@@ -184,25 +184,25 @@ jobs:
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ github.run_number }}
-          name: Release v${{ github.run_number }}
-          body: |
-            🚀 **Automatic deployment to production**
-            
-            **Changes:**
-            - Build: ${{ github.sha }}
-            - Branch: ${{ github.ref_name }}
-            - Workflow: ${{ github.workflow }}
-            
-            **Deployment URL:**
-            http://${{ env.S3_BUCKET_PROD }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Create GitHub Release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     tag_name: v${{ github.run_number }}
+      #     name: Release v${{ github.run_number }}
+      #     body: |
+      #       🚀 **Automatic deployment to production**
+      #       
+      #       **Changes:**
+      #       - Build: ${{ github.sha }}
+      #       - Branch: ${{ github.ref_name }}
+      #       - Workflow: ${{ github.workflow }}
+      #       
+      #       **Deployment URL:**
+      #       http://${{ env.S3_BUCKET_PROD }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com
+      #     draft: false
+      #     prerelease: false
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Notify deployment success
         run: |
