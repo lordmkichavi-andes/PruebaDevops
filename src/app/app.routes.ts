@@ -4,7 +4,7 @@ import { Dashboard } from './pages/dashboard/dashboard';
 
 @Component({
   standalone: true,
-  template: `<h2>Mejoras del Dashboard en desarrollo</h2>`,
+  template: `<h2>Otro cambio realizado</h2>`,
 })
 class EmptyComponent {}
 
