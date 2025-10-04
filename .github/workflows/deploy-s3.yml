@@ -9,7 +9,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  S3_BUCKET_PROD: medisupply-web-prod
+  S3_BUCKET_PROD: prueba-angular-120569610818-us-east-1
   CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
   MIN_COVERAGE: 70
 
