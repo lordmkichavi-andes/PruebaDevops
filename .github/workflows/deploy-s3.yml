@@ -50,7 +50,7 @@ jobs:
         run: npm ci
 
       - name: Run linting
-        run: npm run lint
+        run: npx ng lint
 
       - name: Run unit tests with coverage
         run: |
@@ -58,7 +58,7 @@ jobs:
           echo "📊 Configuración:"
           echo "   - Tipo: Pruebas básicas para CI/CD"
           echo "   - Cobertura mínima: ${MIN_COVERAGE}%"
-          ng test --include="**/coverage-test.spec.ts" --watch=false --browsers=ChromeHeadless --code-coverage
+          npx ng test --include="**/coverage-test.spec.ts" --watch=false --browsers=ChromeHeadless --code-coverage
 
       - name: Check test coverage
         id: coverage-check
@@ -107,7 +107,7 @@ jobs:
           fi
 
       - name: Build application
-        run: npm run build:prod
+        run: npx ng build --configuration production
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
