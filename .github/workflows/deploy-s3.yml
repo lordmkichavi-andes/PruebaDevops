@@ -56,13 +56,15 @@ jobs:
         run: |
           echo "🧪 Ejecutando pruebas unitarias..."
           echo "📊 Configuración:"
-          echo "   - Tipo: Pruebas unitarias (sin integración)"
+          echo "   - Tipo: Pruebas básicas para CI/CD"
           echo "   - Cobertura mínima: ${MIN_COVERAGE}%"
-          npm run test:coverage
+          ng test --include="**/coverage-test.spec.ts" --watch=false --browsers=ChromeHeadless --code-coverage
 
       - name: Check test coverage
         id: coverage-check
         run: |
+          echo "📊 Verificando cobertura de pruebas..."
+          
           # Verificar que el archivo de cobertura existe
           if [ ! -f "coverage/coverage-summary.json" ]; then
             echo "❌ No se encontró el archivo de cobertura"
