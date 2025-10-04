@@ -67,7 +67,7 @@ describe('Pruebas de Cobertura para CI/CD', () => {
     });
 
     it('debería validar campos requeridos', () => {
-      const validateRequired = (value: any): boolean => {
+      const validateRequired = (value: unknown): boolean => {
         return value !== null && value !== undefined && value !== '';
       };
 
@@ -78,14 +78,14 @@ describe('Pruebas de Cobertura para CI/CD', () => {
     });
 
     it('debería procesar arrays de datos', () => {
-      const processData = (data: any[]): { count: number; hasItems: boolean } => {
+      const processData = (data: unknown[]): { count: number; hasItems: boolean } => {
         return {
           count: data.length,
           hasItems: data.length > 0
         };
       };
 
-      const emptyArray: any[] = [];
+      const emptyArray: unknown[] = [];
       const fullArray = [1, 2, 3];
 
       expect(processData(emptyArray)).toEqual({ count: 0, hasItems: false });
@@ -93,7 +93,7 @@ describe('Pruebas de Cobertura para CI/CD', () => {
     });
 
     it('debería manejar errores correctamente', () => {
-      const handleError = (error: any): string => {
+      const handleError = (error: unknown): string => {
         if (error instanceof Error) {
           return error.message;
         }
