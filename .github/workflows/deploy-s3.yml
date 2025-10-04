@@ -154,7 +154,9 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    environment: production
+    environment: 
+      name: production
+      url: http://${{ env.S3_BUCKET_PROD }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com
     steps:
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -183,6 +185,14 @@ jobs:
           aws cloudfront create-invalidation \
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"
+
+      - name: Deploy Success Notification
+        run: |
+          echo "🎉 ¡Deploy a producción completado exitosamente!"
+          echo "🌐 URL: http://${{ env.S3_BUCKET_PROD }}.s3-website-${{ env.AWS_REGION }}.amazonaws.com"
+          echo "📦 Build: ${{ github.sha }}"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo "⏰ Timestamp: $(date)"
 
       # - name: Create GitHub Release
       #   uses: softprops/action-gh-release@v1
